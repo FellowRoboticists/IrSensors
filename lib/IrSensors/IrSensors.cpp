@@ -1,6 +1,7 @@
-// IrSensors library
-// copyright Dave Sieh, 2013
-// This code is public domain, enjoy!
+// IrSensors Arduino library
+//
+// Copyright (c) 2013 Dave Sieh
+// See LICENSE.txt for details.
 
 #include <Arduino.h>
 #include "IrSensors.h"

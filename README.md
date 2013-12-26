@@ -34,3 +34,8 @@ For example:
       ...
     }
 
+Copyright
+=========
+Copyright 2013 Dave Sieh
+
+See LICENSE.txt for details.

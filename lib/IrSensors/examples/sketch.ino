@@ -1,4 +1,9 @@
 // -*- c -*-
+// IrSensors Arduino Library
+//
+// Copyright (c) 2013 Dave Sieh
+// See LICENSE.txt for details.
+
 #include <IrSensors.h>
 
 // Set up the IR Sensors with the following pins:
