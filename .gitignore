@@ -1,2 +1,4 @@
 *~
 .build
+lib/pspc_support
+*.swp

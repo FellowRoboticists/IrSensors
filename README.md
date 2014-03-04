@@ -36,6 +36,6 @@ For example:
 
 Copyright
 =========
-Copyright 2013 Dave Sieh
+Copyright 2013,2014 Dave Sieh
 
 See LICENSE.txt for details.

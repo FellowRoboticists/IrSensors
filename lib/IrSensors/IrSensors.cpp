@@ -1,16 +1,26 @@
 // IrSensors Arduino library
 //
-// Copyright (c) 2013 Dave Sieh
+// Copyright (c) 2013,2014 Dave Sieh
 // See LICENSE.txt for details.
 
 #include <Arduino.h>
 #include "IrSensors.h"
+#include "pspc_support.h"
 
-const char *sensorNames[] = {
-  "Left",
-  "Center",
-  "Right"
+#ifdef IRSENSORS_DEBUG
+#define SENSOR_NAME(i) STRING_FROM_TABLE(sensorNames,i)
+
+// Build up a string table for the sensor names
+const char left_name[] PROGMEM = "Left";
+const char center_name[] PROGMEM = "Center";
+const char right_name[] PROGMEM = "Right";
+
+PGM_P const sensorNames[] PROGMEM = {
+  left_name,
+  center_name,
+  right_name
 };
+#endif
 
 IrSensors::IrSensors(int leftPin, int centerPin, int rightPin) {
   irSensorPins[IrLeft] = leftPin;
@@ -40,11 +50,13 @@ boolean IrSensors::highReflectionDetected(IrSensor sensor) {
   if (value <= irSensorReflect[sensor]) {
     // Object detected (lower value means more reflection)
     result = true; 
+#ifdef IRSENSORS_DEBUG
     if (! isDetected[sensor]) { 
       // Only print on initial detection
-      Serial.print(sensorNames[sensor]);         
-      Serial.println(" object detected");
+      Serial.print(SENSOR_NAME(sensor));         
+      Serial.println(P(" object detected"));
     }
+#endif
   }
 
   isDetected[sensor] = result; 
@@ -63,11 +75,13 @@ boolean IrSensors::lowReflectionDetected(IrSensor sensor) {
   if (value >= irSensorEdge[sensor]) {
     // edge detected (higher value means less reflection)
     result = true; 
+#ifdef IRSENSORS_DEBUG
     if (isDetected[sensor] == false) { 
       // only print on initial detection
-      Serial.print(sensorNames[sensor]);         
-      Serial.println(" edge detected");
+      Serial.print(SENSOR_NAME(sensor));         
+      Serial.println(P(" edge detected"));
     }
+#endif
   }
 
   isDetected[sensor] = result; 
